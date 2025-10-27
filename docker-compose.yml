@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "portfolio_service", "-d", "portfolio_main"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./alembic.ini:/app/alembic.ini:ro
+    secrets:
+      - vault_token
+    environment:
+      VAULT_ADDR: http://vault-prod:8200
+      VAULT_TOKEN_FILE: /run/secrets/vault_token
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+secrets:
+  vault_token:
+    file: ./secret-token.txt
+
+volumes:
+  pgdata:

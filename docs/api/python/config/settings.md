@@ -1,0 +1,56 @@
+# Управление настройками приложения
+
+Модуль `settings` реализует паттерн "Конфигурация как код" с использованием Pydantic, предоставляя типобезопасный доступ к настройкам приложения.
+
+## Особенности
+
+- Строгая типизация всех настроек
+- Автоматическая загрузка из переменных окружения
+- Валидация данных на этапе инициализации
+- Вычисляемые свойства для часто используемых значений
+- Поддержка расширяемой конфигурации
+
+## Документация API
+
+### Класс Settings
+
+Основной класс для работы с настройками приложения. Наследуется от `pydantic.BaseSettings`.
+
+::: src.config.settings.Settings
+    options:
+      show_source: true
+      show_signature_annotations: true
+      show_docstring: true
+      show_bases: true
+      show_root_heading: false
+      show_root_toc_entry: false
+
+## Примеры использования
+
+### Базовое использование
+
+```python
+from src.config.settings import Settings
+
+# Инициализация настроек
+settings = Settings()
+
+# Доступ к настройкам
+db_uri = settings.postgres_uri
+secret_key = settings.FASTAPI_SECRET
+```
+
+### Настройка окружения
+
+1. Создайте файл `.env` в корне проекта с необходимыми переменными
+2. Или установите переменные окружения напрямую в системе
+
+Пример минимального `.env` файла:
+```env
+FASTAPI_SECRET=your-secret-key
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=dbname
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+```

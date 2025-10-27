@@ -131,7 +131,7 @@ nav:
           - Конфигурация:
               - Настройки: api/python/config/settings.md
               - Загрузчик: api/python/config/loader.md
-          - Доменная модель: api/python/domain/model.md
+          - Доменная модель: api/python/domain/domain.md
           - Сущности:
               - Модели: api/python/entity/models.md
           - Точки входа:
@@ -154,5 +154,5 @@ nav:
       - Контрибьют: faq/contributing.md
   - Troubleshooting:
       - Запуск приложения: troubleshooting/start.md
-  - История изменений: changelog.md
+  - История изменений: CHANGELOG.md
   - Лицензия: LICENCE.md
