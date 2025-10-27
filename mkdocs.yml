@@ -1,0 +1,158 @@
+site_name: eebook-portfolio
+site_description: Документация проекта eebook-portfolio
+site_author: macalistervadim
+site_url: https://macalistervadim.github.io/eebook-portfolio/
+
+repo_url: https://github.com/macalistervadim/eebook-portfolio
+repo_name: macalistervadim/eebook-portfolio
+edit_uri: edit/main/docs/
+
+copyright: >
+  Copyright © 2023 — 2025 <a href="https://github.com/macalistervadim" target="_blank">Macalister Vadim</a>
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: ru
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.sections
+    - navigation.instant
+    - navigation.expand
+    - navigation.instant.progress
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.footer
+
+  palette:
+    - scheme: default
+      primary: black
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    - scheme: slate
+      primary: black
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  copyright: >
+    Последнее обновление: {{ git-revision-date }}
+    Автор: {{ git-revision-author }}
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/macalistervadim
+      name: GitHub
+    - icon: material/email
+      link: mailto:macalistervadim@ya.ru
+      name: Email
+  generator: false
+  consent:
+    title: 🍪 Cookies
+    description: >
+      Мы используем cookies для улучшения качества документации.
+    actions:
+      - accept
+      - reject
+  feedback:
+    title: Было ли это полезно?
+    ratings:
+      - icon: material/thumb-up-outline
+        name: Да, всё понятно
+        data: 1
+        note: 🎉 Спасибо за отзыв!
+      - icon: material/thumb-down-outline
+        name: Можно улучшить
+        data: 0
+        note: 🙏 Помоги нам улучшить статью — создай issue на GitHub.
+
+extra_css:
+  - css/landing.css
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.emoji
+  - attr_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed
+  - admonition
+  - attr_list
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+      type: date
+      locale: ru
+      timezone: Europe/Moscow
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            docstring_style: google
+            search_path:
+              - src
+
+nav:
+  - Главная: index.md
+  - Архитектура:
+      - Компоненты: architecture/components.md
+  - Руководство:
+      - Установка: installation/guide.md
+  - API:
+      - Python API:
+          - Bootstrap: api/python/bootstrap.md
+          - Адаптеры:
+              - Фабрики: api/python/adapters/factory.md
+              - Интерфейсы: api/python/adapters/interfaces.md
+              - ORM: api/python/adapters/orm.md
+              - Repository: api/python/adapters/repository.md
+              - Vault: api/python/adapters/vault_client.md
+              - PasswordHasher: api/python/adapters/password_hasher.md
+          - Конфигурация:
+              - Настройки: api/python/config/settings.md
+              - Загрузчик: api/python/config/loader.md
+          - Доменная модель: api/python/domain/model.md
+          - Сущности:
+              - Модели: api/python/entity/models.md
+          - Точки входа:
+              - FastAPI приложение: api/python/entrypoints/fastapi_app.md
+              - API эндпоинты: api/python/entrypoints/api/endpoints.md
+          - Инфраструктура:
+              - База данных:
+                  - Движок: api/python/infrastructure/database/engine.md
+                  - Миграции: api/python/infrastructure/database/migrations.md
+              - Жизненный цикл: api/python/infrastructure/lifespan.md
+          - Сервисный слой:
+              - Зависимости: api/python/service_layer/dependencies.md
+              - Unit of Work: api/python/service_layer/uow.md
+              - UserService: api/python/service_layer/users_service.md
+  - FAQ:
+      - Главная: faq/index.md
+      - Кодинг и стиль: faq/coding_guidelines.md
+      - Git и коммиты: faq/git_commits.md
+      - Тестирование: faq/testing.md
+      - Контрибьют: faq/contributing.md
+  - Troubleshooting:
+      - Запуск приложения: troubleshooting/start.md
+  - История изменений: changelog.md
+  - Лицензия: LICENCE.md
