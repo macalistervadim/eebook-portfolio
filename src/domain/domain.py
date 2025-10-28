@@ -2,8 +2,8 @@ import datetime
 import uuid
 from decimal import Decimal
 
-from domain.enums import TransactionType
-from domain.exceptions import (
+from src.domain.enums import TransactionType
+from src.domain.exceptions import (
     InsufficientHoldingsError,
     InvalidPortfolioOperationError,
     InvalidTransactionDataError,
@@ -160,7 +160,7 @@ class Portfolio:
         self.user_id = user_id
         self.name = name.strip()
         self.currency = currency
-        self.created_at = created_at or datetime.datetime.utcnow()
+        self.created_at = created_at or datetime.datetime.now(datetime.UTC)
         self.holdings = holdings or []
 
     def get_holding(self, asset_id: str) -> Holding | None:
