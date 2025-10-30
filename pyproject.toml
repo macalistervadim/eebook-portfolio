@@ -5,6 +5,7 @@ description = "microservice for working with user assets (portfolios) in the eeb
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "alembic>=1.17.1",
     "asyncpg>=0.30.0",
     "fastapi[standart]>=0.120.0",
     "hvac>=2.3.0",
@@ -29,6 +30,7 @@ dev = [
     "pytest>=8.4.2",
     "pytest-asyncio>=1.2.0",
     "ruff>=0.14.2",
+    "types-hvac>=2.3.0.20250914",
     "types-setuptools>=80.9.0.20250822",
 ]
 

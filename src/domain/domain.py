@@ -152,11 +152,10 @@ class Portfolio:
         user_id: uuid.UUID,
         name: str,
         currency: str,
-        portfolio_id: uuid.UUID | None = None,
         created_at: datetime.datetime | None = None,
         holdings: list[Holding] | None = None,
     ) -> None:
-        self.id = portfolio_id or uuid.uuid4()
+        self.id = uuid.uuid4()
         self.user_id = user_id
         self.name = name.strip()
         self.currency = currency
