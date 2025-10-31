@@ -82,6 +82,7 @@ class Transaction:
         'total_amount',
         'executed_at',
         'currency',
+        'transaction_type',
     )
 
     def __init__(
@@ -160,7 +161,7 @@ class Portfolio:
         self.name = name.strip()
         self.currency = currency
         self.created_at = created_at or datetime.datetime.now(datetime.UTC)
-        self.holdings = holdings or []
+        self.holdings = list(holdings) if holdings is not None else []
 
     def get_holding(self, asset_id: str) -> Holding | None:
         """Возвращает существующую позицию по активу или None, если её нет."""
