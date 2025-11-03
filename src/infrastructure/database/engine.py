@@ -9,12 +9,12 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
+from src.config.settings import get_settings
 from src.infrastructure.database.exceptions import (
     DatabaseArgumentError,
     DatabaseConnectionError,
     DatabaseTimeoutError,
 )
-from src.service_layer.dependencies import get_settings
 
 logger = logging.getLogger(__name__)
 

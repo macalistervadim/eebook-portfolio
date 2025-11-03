@@ -2,26 +2,22 @@ import logging
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.ext.asyncio import async_sessionmaker
 from starlette.responses import JSONResponse
 
-from src.adapters.factory import SQLAlchemyPortfolioRepositoryFactory
-from src.config.settings import Settings
+from src.config.settings import Settings, get_settings
 from src.domain.domain import Portfolio, Transaction
-from src.service_layer.dependencies import get_settings
-from src.service_layer.portfolio_service import PortfolioService, UserSerivce
-from src.service_layer.uow import SqlAlchemyUnitOfWork
+from src.entity.models import AddTransaction, CreatePortfolio, UpdatePortfolio
+from src.service_layer.dependencies import get_uow, get_user_service
+from src.service_layer.portfolio_service import ABCUserService, PortfolioService
+from src.service_layer.uow import AbstractUnitOfWork
 
-router = APIRouter(tags=['users'])
+router = APIRouter(prefix='/api/v1/portfolio', tags=['users'])
 
 logger = logging.getLogger(__name__)
 
 
-settings_dependency = Depends(get_settings)
-
-
 @router.get('/health')
-async def health(settings: Settings = settings_dependency) -> JSONResponse:
+async def health(settings: Settings = Depends(get_settings)) -> JSONResponse:
     content = {
         'status': 'ok',
         'database': 'connected' if settings.POSTGRES_HOST else 'disconnected',
@@ -29,17 +25,16 @@ async def health(settings: Settings = settings_dependency) -> JSONResponse:
     return JSONResponse(content=content, status_code=status.HTTP_200_OK)
 
 
-repo_factory = SQLAlchemyPortfolioRepositoryFactory()
-uow = SqlAlchemyUnitOfWork(session_factory=async_sessionmaker, repo_factory=repo_factory)  # type: ignore
-user_service = UserSerivce()
-
-
 @router.post('/portfolios')
-async def create_portfolio(payload: dict):
+async def create_portfolio(
+    portfolio_create_entity: CreatePortfolio,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     portfolio = Portfolio(
-        user_id=UUID(payload['user_id']),
-        name=payload['name'],
-        currency=payload['currency'],
+        user_id=portfolio_create_entity.user_id,
+        name=portfolio_create_entity.name,
+        currency=portfolio_create_entity.currency,
     )
     async with uow as u:
         service = PortfolioService(u.users, user_service)
@@ -52,7 +47,11 @@ async def create_portfolio(payload: dict):
 
 
 @router.get('/portfolios/{portfolio_id}')
-async def get_portfolio(portfolio_id: UUID):
+async def get_portfolio(
+    portfolio_id: UUID,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     async with uow as u:
         service = PortfolioService(u.users, user_service)
         portfolio = await service.get_by_id(portfolio_id)
@@ -62,7 +61,11 @@ async def get_portfolio(portfolio_id: UUID):
 
 
 @router.get('/users/{user_id}/portfolios')
-async def get_user_portfolios(user_id: UUID):
+async def get_user_portfolios(
+    user_id: UUID,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     async with uow as u:
         service = PortfolioService(u.users, user_service)
         portfolios = await service.get_by_user_id(user_id)
@@ -70,21 +73,29 @@ async def get_user_portfolios(user_id: UUID):
 
 
 @router.put('/portfolios/{portfolio_id}')
-async def update_portfolio(portfolio_id: UUID, payload: dict):
+async def update_portfolio(
+    update_portfolio_entity: UpdatePortfolio,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     async with uow as u:
         service = PortfolioService(u.users, user_service)
-        portfolio = await service.get_by_id(portfolio_id)
+        portfolio = await service.get_by_id(update_portfolio_entity.portfolio_id)
         if not portfolio:
             raise HTTPException(status_code=404, detail='Portfolio not found')
-        portfolio.name = payload.get('name', portfolio.name)
-        portfolio.currency = payload.get('currency', portfolio.currency)
+        portfolio.name = update_portfolio_entity.name
+        portfolio.currency = update_portfolio_entity.currency
         await service.update(portfolio)
         await u.commit()
     return {'status': 'updated'}
 
 
 @router.delete('/portfolios/{portfolio_id}')
-async def delete_portfolio(portfolio_id: UUID):
+async def delete_portfolio(
+    portfolio_id: UUID,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     async with uow as u:
         service = PortfolioService(u.users, user_service)
         await service.delete(portfolio_id)
@@ -93,16 +104,20 @@ async def delete_portfolio(portfolio_id: UUID):
 
 
 @router.post('/transactions')
-async def add_transaction(payload: dict):
+async def add_transaction(
+    add_transaction_entity: AddTransaction,
+    uow: AbstractUnitOfWork = Depends(get_uow),
+    user_service: ABCUserService = Depends(get_user_service),
+):
     transaction = Transaction(
-        portfolio_id=UUID(payload['portfolio_id']),
-        asset_id=payload['asset_id'],
-        transaction_type=payload['transaction_type'],
-        quantity=payload['quantity'],
-        price_per_unit=payload['price_per_unit'],
-        total_amount=payload['total_amount'],
-        executed_at=payload['executed_at'],
-        currency=payload['currency'],
+        portfolio_id=add_transaction_entity.portfolio_id,
+        asset_id=add_transaction_entity.asset_id,
+        transaction_type=add_transaction_entity.transaction_type,
+        quantity=add_transaction_entity.quantity,
+        price_per_unit=add_transaction_entity.price_per_unit,
+        total_amount=add_transaction_entity.total_amount,
+        executed_at=add_transaction_entity.executed_at,
+        currency=add_transaction_entity.currency,
     )
     async with uow as u:
         service = PortfolioService(u.users, user_service)

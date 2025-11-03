@@ -3,6 +3,7 @@ from uuid import UUID
 
 from src.adapters.repository import AbstractPortfolioRepository
 from src.domain.domain import Portfolio, Transaction
+from src.service_layer.users_service import ABCUserService
 
 
 class ABCPortfolioService(abc.ABC):
@@ -29,21 +30,6 @@ class ABCPortfolioService(abc.ABC):
     @abc.abstractmethod
     async def add_transaction(self, transaction: Transaction) -> None:
         raise NotImplementedError
-
-
-class ABCUserService(abc.ABC):
-    @abc.abstractmethod
-    async def get_by_id(self, user_id: UUID) -> dict | None:
-        raise NotImplementedError
-
-
-class UserSerivce(ABCUserService):
-    async def get_by_id(self, user_id: UUID) -> dict | None:
-        return {
-            'id': user_id,
-            'name': 'John Doe',
-            'email': 'john.doe@example.com',
-        }
 
 
 class PortfolioService(ABCPortfolioService):
