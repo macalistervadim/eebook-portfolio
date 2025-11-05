@@ -1,8 +1,10 @@
 import uuid
 from decimal import Decimal
+from unittest.mock import patch, mock_open
 
 import pytest
 
+from src.adapters.vault_client import VaultClient
 from src.domain.domain import Portfolio, Holding
 
 
@@ -32,3 +34,19 @@ def portfolio_with_sber(sber_holding):
         currency='USD',
         holdings=[sber_holding],
     )
+
+
+@pytest.fixture
+def mock_vault_client():
+    with (
+        patch('builtins.open', mock_open(read_data='fake-token')),
+        patch('src.adapters.vault_client.hvac.Client') as MockClient,
+    ):
+        mock_client = MockClient.return_value
+        mock_client.is_authenticated.return_value = True
+        mock_client.secrets.kv.v2.read_secret_version.return_value = {
+            'data': {'data': {'username': 'admin', 'password': '123'}}
+        }
+
+        vc = VaultClient(addr='http://fake', token_file='/fake/token')
+        yield vc
