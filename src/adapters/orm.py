@@ -42,7 +42,7 @@ transaction_table = Table(
         index=True,
     ),
     Column('asset_id', String(100), nullable=False),
-    Column('transaction_type', String(20), nullable=False),  # "BUY", "SELL" и т.д.
+    Column('transaction_type', String(20), nullable=False),
     Column('quantity', Numeric(precision=20, scale=10), nullable=False),
     Column('price_per_unit', Numeric(precision=20, scale=10), nullable=False),
     Column('total_amount', Numeric(precision=20, scale=10), nullable=False),
