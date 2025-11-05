@@ -20,7 +20,7 @@ class AbstractUnitOfWork(abc.ABC):
         users: Репозиторий для работы с пользователями.
     """
 
-    users: AbstractPortfolioRepository
+    portfolio: AbstractPortfolioRepository
 
     async def __aenter__(self) -> 'AbstractUnitOfWork':
         """Вход в контекстный менеджер.
@@ -106,7 +106,7 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):
 
         """
         self.session: AsyncSession = self.session_factory()
-        self.users = self.repo_factory.create(self.session)
+        self.portfolio = self.repo_factory.create(self.session)
         return await super().__aenter__()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
