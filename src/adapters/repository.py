@@ -64,7 +64,7 @@ class SqlAlchemyPortfolioRepository(AbstractPortfolioRepository):
             )
             await self.session.execute(stmt_h)
 
-    async def get_by_id(self, portfolio_id):
+    async def get_by_id(self, portfolio_id) -> Portfolio | None:
         row = await self.session.execute(
             select(portfolio_table).where(portfolio_table.c.id == portfolio_id),
         )
@@ -85,7 +85,7 @@ class SqlAlchemyPortfolioRepository(AbstractPortfolioRepository):
             created_at=p_data.created_at,
         )
 
-    async def get_by_user_id(self, user_id):
+    async def get_by_user_id(self, user_id) -> list[Portfolio]:
         row = await self.session.execute(
             select(portfolio_table).where(portfolio_table.c.user_id == user_id),
         )
