@@ -1,5 +1,3 @@
-# service.py
-
 import abc
 import logging
 from uuid import UUID

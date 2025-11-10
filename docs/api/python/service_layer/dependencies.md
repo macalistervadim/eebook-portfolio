@@ -11,15 +11,3 @@
 - Управление жизненным циклом зависимостей
 
 ## Документация API
-
-### get_settings
-
-Фабрика для получения настроек приложения с кэшированием.
-
-::: src.service_layer.dependencies.get_settings
-    options:
-      show_source: true
-      show_signature_annotations: true
-      show_docstring: true
-      show_root_heading: false
-      show_root_toc_entry: false
