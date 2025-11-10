@@ -2,90 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/CHANGELOG/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/LICENCE/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/rest/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/bootstrap/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/adapters/factory/</loc>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/adapters/interfaces/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/adapters/orm/</loc>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/adapters/repository/</loc>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/adapters/vault_client/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/config/loader/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/config/settings/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/domain/domain/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/entity/models/</loc>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/entrypoints/fastapi_app/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/entrypoints/api/endpoints/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/infrastructure/lifespan/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/infrastructure/database/engine/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/infrastructure/database/migrations/migrations/</loc>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/infrastructure/logging/logging/</loc>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/service_layer/dependencies/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/service_layer/portfolio_service/</loc>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/service_layer/uow/</loc>
+         <lastmod>2025-11-10</lastmod>
+    </url>
+    <url>
+         <loc>https://macalistervadim.github.io/eebook-portfolio/api/python/service_layer/users_service/</loc>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/architecture/components/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/faq/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/faq/coding_guidelines/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/faq/contributing/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/faq/git_commits/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/faq/testing/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
     <url>
          <loc>https://macalistervadim.github.io/eebook-portfolio/troubleshooting/start/</loc>
-         <lastmod>2025-10-27</lastmod>
+         <lastmod>2025-11-10</lastmod>
     </url>
 </urlset>

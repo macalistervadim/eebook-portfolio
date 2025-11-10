@@ -18,7 +18,7 @@
         <link rel="prev" href="../../config/loader/">
       
       
-        <link rel="next" href="../../entrypoints/fastapi_app/">
+        <link rel="next" href="../../entity/models/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -846,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../adapters/factory.md" class="md-nav__link">
+      <a href="../../adapters/factory/" class="md-nav__link">
         
   
   
@@ -892,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../adapters/orm.md" class="md-nav__link">
+      <a href="../../adapters/orm/" class="md-nav__link">
         
   
   
@@ -915,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../adapters/repository.md" class="md-nav__link">
+      <a href="../../adapters/repository/" class="md-nav__link">
         
   
   
@@ -944,29 +944,6 @@
   
   <span class="md-ellipsis">
     Vault
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../adapters/password_hasher.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    PasswordHasher
     
   </span>
   
@@ -1426,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../entity/models.md" class="md-nav__link">
+      <a href="../../entity/models/" class="md-nav__link">
         
   
   
@@ -1669,7 +1646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../infrastructure/database/migrations.md" class="md-nav__link">
+      <a href="../../infrastructure/database/migrations/migrations/" class="md-nav__link">
         
   
   
@@ -1706,6 +1683,29 @@
   
   <span class="md-ellipsis">
     Жизненный цикл
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/logging/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Логирование
     
   </span>
   
@@ -1799,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../service_layer/uow.md" class="md-nav__link">
+      <a href="../../service_layer/uow/" class="md-nav__link">
         
   
   
@@ -1822,12 +1822,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../service_layer/users_service.md" class="md-nav__link">
+      <a href="../../service_layer/users_service/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     UserService
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../service_layer/portfolio_service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PortfolioService
     
   </span>
   
@@ -2554,8 +2577,7 @@ portfolio.execute_transaction(tx)</p>
 
               <details class="quote">
                 <summary>Source code in <code>src/domain/domain.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">122</span>
-<span class="normal">123</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
@@ -2714,16 +2736,15 @@ portfolio.execute_transaction(tx)</p>
         <span class="n">user_id</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">portfolio_id</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">holdings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Holding</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">portfolio_id</span> <span class="ow">or</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">user_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">currency</span> <span class="o">=</span> <span class="n">currency</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">created_at</span> <span class="ow">or</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span> <span class="o">=</span> <span class="n">holdings</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">created_at</span> <span class="ow">or</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">UTC</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">holdings</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">holdings</span><span class="p">)</span> <span class="k">if</span> <span class="n">holdings</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_holding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Holding</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Возвращает существующую позицию по активу или None, если её нет.&quot;&quot;&quot;</span>
@@ -2856,7 +2877,7 @@ portfolio.execute_transaction(tx)</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="domain.exceptions.TransactionMismatchError">TransactionMismatchError</span></code>
+                  <code><a class="autorefs autorefs-internal" title="TransactionMismatchError (src.domain.exceptions.TransactionMismatchError)" href="#src.domain.exceptions.TransactionMismatchError">TransactionMismatchError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2866,7 +2887,7 @@ portfolio.execute_transaction(tx)</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="domain.exceptions.InsufficientHoldingsError">InsufficientHoldingsError</span></code>
+                  <code><a class="autorefs autorefs-internal" title="InsufficientHoldingsError (src.domain.exceptions.InsufficientHoldingsError)" href="#src.domain.exceptions.InsufficientHoldingsError">InsufficientHoldingsError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2876,7 +2897,7 @@ portfolio.execute_transaction(tx)</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="domain.exceptions.InvalidPortfolioOperationError">InvalidPortfolioOperationError</span></code>
+                  <code><a class="autorefs autorefs-internal" title="InvalidPortfolioOperationError (src.domain.exceptions.InvalidPortfolioOperationError)" href="#src.domain.exceptions.InvalidPortfolioOperationError">InvalidPortfolioOperationError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3072,7 +3093,7 @@ portfolio.execute_transaction(tx)</p>
           <tr class="doc-section-item">
             <td><code><span title="src.domain.domain.Transaction.type">type</span></code></td>
             <td>
-                  <code><span title="domain.enums.TransactionType">TransactionType</span></code>
+                  <code><span title="src.domain.enums.TransactionType">TransactionType</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3220,7 +3241,8 @@ portfolio.execute_transaction(tx)</p>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
-<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">:</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Финансовая операция — зафиксированный факт взаимодействия с активом.</span>
 
 <span class="sd">    Является командой для агрегата Portfolio и не входит в его состав.</span>
@@ -3253,6 +3275,7 @@ portfolio.execute_transaction(tx)</p>
         <span class="s1">&#39;total_amount&#39;</span><span class="p">,</span>
         <span class="s1">&#39;executed_at&#39;</span><span class="p">,</span>
         <span class="s1">&#39;currency&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;transaction_type&#39;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -3863,7 +3886,7 @@ portfolio.execute_transaction(tx)</p>
     <span class="md-icon" title="Последнее обновление">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="27 октября 2025 г. 11:42:21 MSK">27 октября 2025 г.</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="27 октября 2025 г. 11:47:43 MSK">27 октября 2025 г.</span>
   </span>
 
     
@@ -3873,7 +3896,7 @@ portfolio.execute_transaction(tx)</p>
     <span class="md-icon" title="Дата создания">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="27 октября 2025 г. 11:42:21 MSK">27 октября 2025 г.</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="27 октября 2025 г. 11:47:43 MSK">27 октября 2025 г.</span>
   </span>
 
     
@@ -3910,8 +3933,8 @@ portfolio.execute_transaction(tx)</p>
         </a>
       
       
-        <a class="next" href="../../entrypoints/fastapi_app/">
-          FastAPI приложение ➡
+        <a class="next" href="../../entity/models/">
+          Модели ➡
         </a>
       
     </div>
